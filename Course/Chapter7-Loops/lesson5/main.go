@@ -5,7 +5,27 @@ import (
 )
 
 func printPrimes(max int) {
-	// ?
+	for i := 2; i <= max; i++ {
+		if i == 2 {
+			fmt.Println(i)
+			continue
+		}
+
+		if i%2 == 0 {
+			continue
+		}
+
+		isPrime := true
+		for j := 3; j*j <= i; j++ {
+			if i%j == 0 {
+				isPrime = false
+				break
+			}
+		}
+		if isPrime {
+			fmt.Println(i)
+		}
+	}
 }
 
 // don't edit below this line
