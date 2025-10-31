@@ -7,7 +7,15 @@ import (
 )
 
 func getCounts(userIDs []string) map[string]int {
-	// ?
+	ids := map[string]int{}
+	for _, user := range userIDs {
+		if _, ok := ids[user]; !ok {
+			ids[user] = 0
+		}
+		ids[user]++
+	}
+
+	return ids
 }
 
 // don't edit below this line
