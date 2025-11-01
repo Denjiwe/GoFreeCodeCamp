@@ -3,7 +3,11 @@ package main
 import "fmt"
 
 func printReports(messages []string) {
-	// ?
+	for _, message := range messages {
+		printCostReport(func(m string) int {
+			return len(m) * 2
+		}, message)
+	}
 }
 
 // don't touch below this line

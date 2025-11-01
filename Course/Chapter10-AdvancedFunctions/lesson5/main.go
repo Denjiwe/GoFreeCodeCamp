@@ -3,7 +3,11 @@ package main
 import "fmt"
 
 func adder() func(int) int {
-	// ?
+	count := 0
+	return func(x int) int {
+		count += x
+		return count
+	}
 }
 
 // don't touch below this line
