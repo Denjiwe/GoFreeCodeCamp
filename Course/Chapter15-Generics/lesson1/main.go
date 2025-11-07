@@ -2,8 +2,12 @@ package main
 
 import "fmt"
 
-func getLast[]() {
-
+func getLast[T any](emails []T) T {
+	if len(emails) == 0 {
+		var zero T
+		return zero
+	}
+	return emails[len(emails)-1]
 }
 
 // don't edit below this line

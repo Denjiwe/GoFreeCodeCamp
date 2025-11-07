@@ -9,7 +9,7 @@ import (
 
 type safeCounter struct {
 	counts map[string]int
-	mux    *sync.RWMutex
+	mux    *sync.Mutex
 }
 
 func (sc safeCounter) inc(key string) {
@@ -60,8 +60,6 @@ func test(sc safeCounter, emailTests []emailTest) {
 	}
 	sort.Strings(emailsSorted)
 
-	sc.mux.RLock()
-	defer sc.mux.RUnlock()
 	for _, email := range emailsSorted {
 		fmt.Printf("Email: %s has %d emails\n", email, sc.val(email))
 	}
@@ -71,7 +69,7 @@ func test(sc safeCounter, emailTests []emailTest) {
 func main() {
 	sc := safeCounter{
 		counts: make(map[string]int),
-		mux:    &sync.RWMutex{},
+		mux:    &sync.Mutex{},
 	}
 	test(sc, []emailTest{
 		{
